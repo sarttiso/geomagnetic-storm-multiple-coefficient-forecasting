@@ -29,6 +29,12 @@
 \documentclass[draft,linenumbers]{agujournal2018}
 \usepackage{apacite}
 \usepackage{url} %this package should fix any errors with URLs in refs.
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[round, sort, numbers, authoryear]{natbib}
+\PassOptionsToPackage{hyphens}{url}
+\usepackage{hyperref}
 
 %%%%%%%
 % \usepackage{trackchanges}
@@ -73,7 +79,7 @@
 % Geohealth
 %
 
-\journalname{Space Weather}
+\journalname{JGR-Space Physics}
 
 
 \begin{document}
@@ -90,7 +96,7 @@
 
 % Example: \title{This is a test title}
 
-\title{Probabilistic forecasting of geomagnetic disturbances with deep learning: from univariate Dst-based prediction to probabilistic multivariate inference with realistic Earth}
+\title{Probabilistic Geomagnetic Storm Forecasting via Deep Learning}
 
 %% ------------------------------------------------------------------------ %%
 %
@@ -111,14 +117,11 @@
 % Example: \authors{A. B. Author\affil{1}\thanks{Current address, Antartica}, B. C. Author\affil{2,3}, and D. E.
 % Author\affil{3,4}\thanks{Also funded by Monsanto.}}
 
-\authors{Adrian Tasistro-Hart\affil{1}, Alexander Grayver\affil{1}, Alexey Kuvshinov\affil{1}}
-
-% \affiliation{2}{Second Affiliation}
-% \affiliation{3}{Third Affiliation}
-% \affiliation{4}{Fourth Affiliation}
+\authors{Adrian Tasistro-Hart\affil{1,2}, Alexander Grayver\affil{1}, Alexey Kuvshinov\affil{1}}
 
 \affiliation{1}{Institute of Geophysics, ETH Z\"urich, Sonneggstrasse 5, 8092 Z\"urich,
 Switzerland}
+\affiliation{2}{Department of Earth Science, University of California, Santa Barbara, CA 93106, USA}
 %(repeat as many times as is necessary)
 
 %% Corresponding Author:
@@ -131,7 +134,7 @@ Switzerland}
 
 % Example: \correspondingauthor{First and Last Name}{email@address.edu}
 
-\correspondingauthor{Adrian Tasistro-Hart}{adrianta@ethz.ch}
+\correspondingauthor{Adrian Tasistro-Hart}{adrian\_tasistro-hart@ucsb.edu}
 
 %% Keypoints, final entry on title page.
 
@@ -147,9 +150,9 @@ Switzerland}
 %  Each must be 100 characters or less with no special characters or punctuation
 
 \begin{keypoints}
-\item = enter point 1 here =
-\item = enter point 2 here =
-\item = enter point 3 here =
+\item We present a neural network architecture that utilizes both observations from the L1 point and solar disk, improving forecast reliability
+\item Our neural network architecture learns reliable estimates of uncertainty in multiple hour ahead forecasts
+\item Instead of the conventional disturbance storm time (Dst) index we forecast the external component of geomagnetic storms, Est
 \end{keypoints}
 
 %% ------------------------------------------------------------------------ %%
@@ -165,9 +168,12 @@ Switzerland}
 %% \begin{abstract} starts the second page
 
 \begin{abstract}
-= enter abstract here =
+Geomagnetic storms, which are governed by the plasma magnetohydrodynamics of the solar-interplanetary-magnetosphere system, entail a formidable challenge for physical forward modeling. Yet, the abundance of high quality observational data has been amenable for the application of data-hungry neural networks to geomagnetic storm forecasting. Previous applications of neural networks to storm forecasting have utilized solar wind observations from the Earth-Sun first Lagrangian point (L1) or closer and have all generated deterministic output without uncertainty estimates. Furthermore, forecasting work has focused on indices that are also sensitive to induced internal magnetic fields, complicating the forecasting problem with another layer of non-linearity. We address these points, presenting neural networks trained on observations from both the solar disk and the L1 point. Our architecture generates reliable probabilistic forecasts over Est, the external component of the disturbance storm time index, showing that neural networks can gauge confidence in their output.
 \end{abstract}
 
+
+\section*{Plain Language Summary}
+Geomagnetic storms are capable of damaging infrastructure like power grids and communication lines, motivating our need to forecast them. Solar phenomena produce geomagnetic storms, which occur when these phenomena reach Earth as bursts of the solar wind. Decades of satellite observations of both the solar wind near the Earth and of the Sun itself are promising for forecasting geomagnetic storms with algorithms known as neural networks. Several neural network architectures have been applied to geomagnetic storm forecasting, but their full potential remains unexplored. First, all existing neural networks have used measurements of the solar wind one hour upstream of the Earth or closer. While these observations are critical for understanding geomagnetic storm progression, from them it is nearly impossible to forecast more than an hour in advance. We include observations of the Sun itself, which reach Earth much faster than the solar wind, thereby including information for forecasting further in advance. Second, all existing neural networks have generated forecasts without uncertainty estimates, meaning that end-users (such as utilities or telecommunications companies) know little about forecast confidence. We present an architecture that generates estimates of uncertainty, and our results demonstrate that neural networks learn how confident to be in their forecasts.
 
 %% ------------------------------------------------------------------------ %%
 %
@@ -176,11 +182,6 @@ Switzerland}
 %% ------------------------------------------------------------------------ %%
 
 %%% Suggested section heads:
-% \section{Introduction}
-%
-% The main text should start with an introduction. Except for short
-% manuscripts (such as comments and replies), the text should be divided
-% into sections, each with its own heading.
 
 % Headings should be sentence fragments and do not begin with a
 % lowercase letter or number. Examples of good headings are:
@@ -203,11 +204,11 @@ Switzerland}
 \section{Introduction}
 \input{sections/introduction.tex}
 
-\section{Methods}
+\section{Data and Methods}
 \input{sections/methods.tex}
 
 \section{Results and Discussion}
-\input{sections/results.tex}
+\input{sections/discussion.tex}
 
 \section{Conclusions}
 \input{sections/conclusions.tex}
@@ -378,7 +379,7 @@ Switzerland}
 
 
 \acknowledgments
- = enter acknowledgments here =
+This work was partially supported by the ESA through the Swarm DISC project. The low (hourly) resolution OMNI data were obtained from the GSFC/SPDF OMNIWeb interface (\url{https://omniweb.gsfc.nasa.gov}). We acknowledge use of the LASCO SOHO CME catalog (\url{https://cdaw.gsfc.nasa.gov/CME\_list/}), which is generated and maintained at the CDAW Data Center by NASA and The Catholic University of America in cooperation with the Naval Research Laboratory. SOHO is a project of international cooperation between ESA and NASA. We acknowledge use of GOES mission x-ray flux data, accessed from \url{https://satdat.ngdc.noaa.gov/sem/goes/data/avg/}. Finally, we acknowledge use of the EST-IST-DST dataset from NOAA accessed from \url{https://www.ngdc.noaa.gov/geomag/est\_ist.shtml}. All data and analysis presented in this study are available as Jupyter notebooks at \url{https://doi.org/10.5281/zenodo.3751682}.
 
 
 %% ------------------------------------------------------------------------ %%
@@ -387,7 +388,7 @@ Switzerland}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BibTeX is preferred:
 %
-% \bibliography{<name of your .bib file>}
+\bibliography{refs.bib}
 %
 % no need to specify bibliographystyle
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
