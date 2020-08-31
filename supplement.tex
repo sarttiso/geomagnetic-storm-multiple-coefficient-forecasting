@@ -60,6 +60,8 @@
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{multirow}
+\usepackage[final]{changes}
+
 
 \begin{document}
 
@@ -93,7 +95,7 @@
 %%%Remove or add items as needed%%%
 \begin{enumerate}
 \item Text S1 to S6
-\item Figures S1 to S8
+\item Figures S1 to S9
 \item Table S1
 \end{enumerate}
 
@@ -273,14 +275,14 @@ for input $\mathbf{x}_t \in \mathbb{R}^d$ at time $t$ and $\mathbf{z}, \mathbf{c
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=1\textwidth]{figures/supplement/persistence.pdf}
-   \caption{Pearson correlation coefficients and root mean squared errors of persistence forecasting of Est and Dst with lags up to 6 hours, demonstrating how persistence forecasting results in deceptively correlative and precise forecasts. On the left, forecasting is shown for all Est and Dst observations from 1996-2018, while on the right, storm-time observations have been isolated for persistence forecasting.}
+   \caption{\replaced{Pearson correlation coefficients and root mean squared errors }{Statistics }of persistence forecasting of Est \added{and Dst }with lags up to \replaced{6}{24} hours, demonstrating how persistence forecasting \deleted{even a day in advance} results in deceptively correlative and \replaced{precise}{accurate} forecasts. \added{On the left, forecasting is shown for all Est and Dst observations from 1996-2018, while on the right, storm-time observations have been isolated for persistence forecasting.}}
    \label{fig:persistence}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figures/supplement/scatter.pdf} 
-  \caption{Conventional forecast-observation scatter plots for both networks (in columns) and forecasts from one to six hours ahead (in rows). Points shown are for all storms from 1996-2018, including 5 hours before and after each storm. Contours, which are logarithmically spaced, show the Gaussian kernel density estimate for the point cloud to aid in visualizing data density. Also listed are typical skill values, namely the Pearson correlation coefficient and root mean square error (RMSE), which are computed separately for storm times and for all training and testing data.}
+  \caption{\added{Conventional forecast-observation scatter plots for both networks (in columns) and forecasts from one to six hours ahead (in rows). Points shown are for all storms from 1996-2018, including 5 hours before and after each storm. Contours, which are logarithmically spaced, show the Gaussian kernel density estimate for the point cloud to aid in visualizing data density. Also listed are typical skill values, namely the Pearson correlation coefficient and root mean square error (RMSE), which are computed separately for storm times and for all training and testing data.}}
   \label{fig:scatter}
 \end{figure}
 
