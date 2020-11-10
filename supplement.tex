@@ -60,7 +60,7 @@
 \PassOptionsToPackage{hyphens}{url}
 \usepackage[colorlinks=true]{hyperref}
 \usepackage{multirow}
-\usepackage[final]{changes}
+\usepackage[]{changes}
 
 
 \begin{document}
@@ -238,20 +238,13 @@ This section demonstrates that utilizing observations of the solar disk in addit
    \label{fig:storm1_both}
 \end{figure}
 
-For both networks, storm onset remains difficult to predict, with the network not recognizing that a storm has begun until it receives as input the storm onset from the L1 point (Figures~\ref{fig:storm1_both} \& \ref{fig:storm1_l1}). Once the networks have felt the storm onset, however, they both dramatically expand uncertainty in their forecasts. The networks with only L1 inputs expand uncertainty more during the storm main phase and less during recovery and quiet times compared to the networks with both L1 and solar disk inputs, resulting in the observed reliability curves that demonstrate reduced reliability for low amplitude storms but slightly higher reliability for larger amplitude storms (Figure~\ref{fig:reliability_input}). For probable, high amplitude storms, then, the networks with only L1 inputs are slightly more reliable, while for smaller amplitude storms the networks with both L1 and solar disk inputs are more reliable.
+\deleted{For both networks, storm onset remains difficult to predict, with the network not recognizing that a storm has begun until it receives as input the storm onset from the L1 point (Figures~\ref{fig:storm1_both} \& \ref{fig:storm1_l1}). Once the networks have felt the storm onset, however, they both dramatically expand uncertainty in their forecasts. The networks with only L1 inputs expand uncertainty more during the storm main phase and less during recovery and quiet times compared to the networks with both L1 and solar disk inputs, resulting in the observed reliability curves that demonstrate reduced reliability for low amplitude storms but slightly higher reliability for larger amplitude storms (Figure~\ref{fig:reliability_input}). For probable, high amplitude storms, then, the networks with only L1 inputs are slightly more reliable, while for smaller amplitude storms the networks with both L1 and solar disk inputs are more reliable.}
 
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=1\textwidth]{figures/supplement/est_forecast_1-6_hour_L1_storm1.pdf}
    \caption{1-6 hour ahead forecasts for the 2016 CME storm for the networks with only observations from the L1 point as input.}
    \label{fig:storm1_l1}
-\end{figure}
-
-\begin{figure}[htbp]
-   \centering
-   \includegraphics[width=1\textwidth]{figures/supplement/est_forecast_reliability_L1vsL1&solardisk_t+6.pdf}
-   \caption{Reliability of 6 hour ahead forecast for network trained on L1 data only compared with the network trained on both L1 and solar disk inputs.}
-   \label{fig:reliability_input}
 \end{figure}
 
 %%
@@ -275,14 +268,14 @@ for input $\mathbf{x}_t \in \mathbb{R}^d$ at time $t$ and $\mathbf{z}, \mathbf{c
 \begin{figure}[htbp]
    \centering
    \includegraphics[width=1\textwidth]{figures/supplement/persistence.pdf}
-   \caption{\replaced{Pearson correlation coefficients and root mean squared errors }{Statistics }of persistence forecasting of Est \added{and Dst }with lags up to \replaced{6}{24} hours, demonstrating how persistence forecasting \deleted{even a day in advance} results in deceptively correlative and \replaced{precise}{accurate} forecasts. \added{On the left, forecasting is shown for all Est and Dst observations from 1996-2018, while on the right, storm-time observations have been isolated for persistence forecasting.}}
+   \caption{Pearson correlation coefficients and root mean squared errors of persistence forecasting of Est and Dst with lags up to 6 hours, demonstrating how persistence forecasting results in deceptively correlative and precise forecasts. On the left, forecasting is shown for all Est and Dst observations from 1996-2018, while on the right, storm-time observations have been isolated for persistence forecasting.}
    \label{fig:persistence}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figures/supplement/scatter.pdf} 
-  \caption{\added{Conventional forecast-observation scatter plots for both networks (in columns) and forecasts from one to six hours ahead (in rows). Points shown are for all storms from 1996-2018, including 5 hours before and after each storm. Contours, which are logarithmically spaced, show the Gaussian kernel density estimate for the point cloud to aid in visualizing data density. Also listed are typical skill values, namely the Pearson correlation coefficient and root mean square error (RMSE), which are computed separately for storm times and for all training and testing data.}}
+  \caption{Conventional forecast-observation scatter plots for both networks (in columns) and forecasts from one to six hours ahead (in rows). Points shown are for all storms from 1996-2018, including 5 hours before and after each storm. Contours, which are logarithmically spaced, show the Gaussian kernel density estimate for the point cloud to aid in visualizing data density. Also listed are typical skill values, namely the Pearson correlation coefficient and root mean square error (RMSE), which are computed separately for storm times and for all training and testing data.}
   \label{fig:scatter}
 \end{figure}
 
